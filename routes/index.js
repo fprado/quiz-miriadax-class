@@ -2,6 +2,7 @@
  var router = express.Router();
  
 var quizController = require('../controllers/quiz_controller.js');
+var creditsController = require('../controllers/credits.js');
 
  /* GET home page. */
  router.get('/', function(req, res) {
@@ -13,5 +14,7 @@ router.get('/quizes/question', quizController.question);
 
 /* Quiz: answer */
 router.get('/quizes/answer', quizController.answer);
+
+router.get('/author', creditsController.author );
 
  module.exports = router;
