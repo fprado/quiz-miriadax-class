@@ -9,6 +9,8 @@ var creditsController = require('../controllers/credits.js');
    res.render('index', { title: 'Quiz' });
  });
  
+ // Autoload de comandos con :quizId
+ router.param('quizId', quizController.load);
 
 /* Quiz: answer */
 router.get('/quizes/answer', quizController.answer);
