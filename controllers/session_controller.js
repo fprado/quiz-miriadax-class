@@ -45,7 +45,8 @@ exports.create = function(req, res) {
         // la sesión se define por la existencia de: req.session.user
         req.session.user = {
             id      :user.id,
-            username:user.username
+            username:user.username,
+            tiempo  :new Date().getTime()
         };
 
         // redirección a path anterior a login
