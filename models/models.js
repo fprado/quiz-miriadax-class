@@ -1,4 +1,3 @@
-
 var path = require('path');
 var pg   = require('pg');
 
@@ -14,7 +13,6 @@ var port     = (url[5]||null);
 var host     = (url[4]||null);
 var storage  = process.env.DATABASE_STORAGE;
 
-
 // Cargar Modelo ORM
 var Sequelize = require('sequelize');
 
@@ -26,12 +24,12 @@ var sequelize = new Sequelize(DB_name, user, pwd, {
     host    : host,
     storage : storage,
     omitNull: true
- });
+});
 
-// Importar la definición de la tabla Quiz en quiz.js
+// Importar definicion de la tabla Quiz
 var quiz_path = path.join(__dirname,'quiz');
 var Quiz      = sequelize.import(quiz_path);
-// Exportar la definición de la tabla Quiz
+// Exportar tabla Quiz
 exports.Quiz = Quiz;
 
 // sequelize.sync() inicializa tabla de preguntas en DB
@@ -39,17 +37,20 @@ sequelize.sync().then(function() {
     // then(..) ejecuta el manejador una vez creada la tabla
     Quiz.count().then(function (count) {
         // la tabla se inicializa solo si está vacía
-        if(count === 0){
+        if(count === 0)
+        {
             Quiz.bulkCreate([
             {
-                 pregunta : 'Capital de Italia',
-                 respuesta: 'Roma'
+                pregunta : 'Capital de Italia',
+                respuesta: 'Roma'
             },
             {
                 pregunta : 'Capital de Portugal',
                 respuesta: 'Lisboa'
             }])
-            .then(function() {console.log('Base de datos inicializada')});
-        };
+            .then(function() {
+                console.log('Base de datos inicializada');
+            });
+        }
     });
 });
