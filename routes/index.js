@@ -22,8 +22,9 @@ router.get('/author', function(req, res) {
     });
 });
 
-// Autoload de comandos con :quizId
-router.param('quizId', quizController.load);
+// Autoload de comandos con :quizId y :commentId
+router.param('quizId',    quizController.load);
+router.param('commentId', commentController.load);
 
 /* Definición de rutas de sesiones */
 // obtener el formulario a rellenar para hacer login
