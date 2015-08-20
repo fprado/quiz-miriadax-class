@@ -36,7 +36,14 @@
     %>
 </table>
 
-<p><a href="/quizes/new"><button>Crear pregunta</button></a></p>
+<%
+if(session.user)
+{
+%>
+    <p><a href="/quizes/new"><button>Crear pregunta</button></a></p>
+<%
+}
+%>
 
 <p>
     <form method="get" action="/quizes">
